@@ -1,0 +1,65 @@
+<% include header.ejs %>
+
+<div class="main-container">
+
+    <main class="site-main">
+
+        <!-- Container -->
+        <div class="container">
+
+            <br>
+            <div class="section-header">
+                <h3>Контакти</h3>
+            </div><!-- Section Header /- -->
+
+            <!-- Row -->
+            <div class="row">
+                <!-- Map Section -->
+                <div class="col-xs-12">
+                    <div class="map-canvas" id="map-canvas-contact" data-lat="48.6043783" data-lng="22.2307835" data-string="Закарпатська обл., Ужгородський р-н, с. Сторожниця, вул. Шевченка" data-zoom="14"></div>
+                </div><!-- Map Section /- -->
+
+                <!-- Contact Form -->
+                <div class="col-sm-6 col-xs-12">
+                    <br>
+                    <div class="contact-form">
+                        <h3>Напишіть нам</h3>
+                        <form>
+                            <div class="form-group">
+                                <input type="text" class="form-control" placeholder="Ім'я *" name="contact-name" id="input_name" required="" />
+                            </div>
+                            <div class="form-group">
+                                <input type="text" class="form-control" placeholder="Електронна адреса*" name="contact-email" id="input_email" required=""  />
+                            </div>
+                            <div class="form-group">
+                                <input type="text" class="form-control" placeholder="Контактний телефон" name="contact-phone" id="input_phone" required="" />
+                            </div>
+                            <div class="form-group">
+                                <textarea class="form-control" placeholder="Ваше повідомлення" name="textarea-message" id="textarea_message"></textarea>
+                            </div>
+                            <button title="Відправити" type="submit" id="btn_submit" name="post">Відправити</button>
+                            <div id="alert-msg" class="alert-msg"></div>
+                        </form>
+                    </div>
+                </div><!-- Contact Form /- -->
+                <!-- Contact Details -->
+                <div class="col-sm-6 col-xs-12">
+                    <br>
+                    <div class="contact-detail">
+                        <h3>Про нас</h3>
+                        <p>Сторожниця - село в Ужгородському районі Закарпатської області.</p>
+                        <div class="detail-box">
+                            <p><i class="fa fa-map-marker"></i>Закарпатська обл., Ужгородський р-н, с. Сторожниця<br> вул. Шевченка</p>
+                            <p><i class="fa fa-phone"></i>Контактний телефон : <a href="tel:03127-32613">03127-32613</a></p>
+                            <p><i class="fa fa-envelope-o"></i>Електронна адреса : <a href="mailto:olegbabyak571@gmail.com">olegbabyak571@gmail.com</a></p>
+                        </div>
+                    </div>
+                </div><!-- Contact Details /- -->
+            </div><!-- Row /- -->
+        </div><!-- Container -->
+
+    </main>
+
+</div>
+
+<% include footer.ejs %>

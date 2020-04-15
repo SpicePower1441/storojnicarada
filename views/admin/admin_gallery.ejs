@@ -1,0 +1,106 @@
+<% include admin_header.ejs %>
+<main>
+    <div class="container-fluid">
+        <h1 class="mt-4">Адмін-панель</h1>
+        <ol class="breadcrumb mb-4">
+            <li class="breadcrumb-item"><a href="/admin/dashboard">Адмін-панель</a></li>
+            <li class="breadcrumb-item active">Галерея</li>
+        </ol>
+
+        <div class="row">
+
+            <% if (album.length > 0) { %>
+
+                <% album.forEach(album => { %>
+                    <div class="col-md-4 col-sm-6 col-xs-6 padding-20 blogBox moreBox" style="display: none">
+                        <div class="type-post color-3">
+                            <div class="entry-cover"><a href="/admin/dashboard/gallery/album/<%= album.slug %>"><img
+                                            style="height: 250px; width: 500px"
+                                            src="/images/gallery/<%= album.slug %>/<%= album.image %>"
+                                            alt="Post"/></a></div>
+                            <div class="entry-content">
+                                <h3 class="entry-title"><a href="/admin/dashboard/gallery/album/<%= album.slug %>"><%= album.title %></a></h3>
+                                <div class="entry-footer">
+                                    <% var options = {year: 'numeric', month: 'long', day: 'numeric'}; %>
+                                    <span class="post-date"><a
+                                                href="#"><%= album.postedAt.toLocaleDateString('ua-UA', options) %></a></span>
+                                    <span class="post-like"><i class="fa fa-image"></i><a
+                                                href="#"><%= album.photos.length %> фото</a></span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                <% }) %>
+                    <div class="col-md-12 load-more" style="background-color: #4268D6;">
+                        <a id="loadMore" style="cursor: pointer; color: white" title="Load More">Показати ще</a>
+                    </div>
+
+            <% } else { %>
+                <h3>Галерея порожня</h3>
+            <% } %>
+            
+        </div>
+        <br>
+        <hr>
+        <h3>Додати новий альбом</h3>
+        <form action="/admin/dashboard/gallery/add-album" method="post" enctype="multipart/form-data">
+            <br>
+            <div class="form-group">
+                <label for="title">Назва альбому</label>
+                <input required type="text" name="title" id="title" class="form-control">
+            </div>
+            <div class="form-group">
+                <label for="">Додати зображення до альбому</label>
+                <div class="custom-file">
+                    <input type="file" class="custom-file-input" name="image" id="img" lang="ua" value="">
+                    <label class="custom-file-label" for="img">Оберіть файл</label>
+                </div>
+                <img src="#" id="imgPreview" alt="">
+            </div>
+            <button type="submit" class="btn btn-primary">Додати</button>
+        </form>
+        <br>
+    </div>
+</main>
+
+
+<% include admin_footer.ejs %>
+
+<script>
+
+    $(document).ready(function () {
+//-------------------------------------------------------
+        $(".moreBox").slice(0, 6).show();
+        if ($(".blogBox:hidden").length != 0) {
+            $("#loadMore").show();
+        } else if ($(".blogBox:hidden").length <= 6) {
+            $("#loadMore").hide();
+            $(".load-more").hide();
+        }
+        $("#loadMore").on('click', function (e) {
+            e.preventDefault();
+            $(".moreBox:hidden").slice(0, 6).slideDown();
+            if ($(".moreBox:hidden").length == 0) {
+                $("#loadMore").fadeOut('slow');
+                $(".load-more").fadeOut('slow');
+            }
+        });
+    });
+
+    function readURL(input) {
+        if (input.files && input.files[0]) {
+            var reader = new FileReader();
+
+            reader.onload = function (e) {
+                $("#imgPreview").attr('src', e.target.result).width(100).height(100);
+            }
+            reader.readAsDataURL(input.files[0]);
+        }
+    }
+
+    $("#img").change(function () {
+        readURL(this);
+    });
+
+
+</script>

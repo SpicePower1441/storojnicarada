@@ -1,0 +1,68 @@
+<% include admin_header.ejs %>
+
+<div class="container-fluid">
+    <h1 class="mt-4">Адмін-панель</h1>
+    <ol class="breadcrumb mb-4">
+        <li class="breadcrumb-item active">Адмін-панель</li>
+    </ol>
+
+    <div class="row">
+        <% posts.forEach(posts => { %>
+            <div class="col-md-4 col-sm-6 col-xs-6 padding-20 blogBox moreBox" style="display: none">
+                <!-- Type Post -->
+                <div class="type-post color-3">
+                    <div class="entry-cover"><a href="/admin/dashboard/post/<%= posts.slug %>"><img
+                                    style="height: 250px; width: 500px"
+                                    src="/images/<%= posts._id %>/<%= posts.image %>"
+                                    alt="Post"/></a></div>
+                    <div class="entry-content">
+                        <div class="post-category"><a href="#" title="business"><%= posts.categories %></a>
+                        </div>
+                        <h3 class="entry-title"><a href="/admin/dashboard/post/<%= posts.slug %>"><%= posts.title %></a></h3>
+                        <p><%= posts.description %></p>
+                        <div class="entry-footer">
+                            <% var options = {year: 'numeric', month: 'long', day: 'numeric'}; %>
+                            <span class="post-date"><a
+                                        href="#"><%= posts.createdAt.toLocaleDateString('ua-UA', options) %></a></span>
+                            <span class="post-like"><i class="fa fa-user"></i><a
+                                        href="#"><%= posts.createdBy %></a></span>
+                            <span class="post-view"><i class="fa fa-comment"></i><a
+                                        href="#"><%= posts.comments.length %></a></span>
+                        </div>
+                        <a href="/admin/dashboard/post/<%= posts.slug %>" title="Read More">Читати далі... <i
+                                    class="fa fa-angle-right"></i></a>
+                    </div>
+                </div><!-- Type Post /- -->
+            </div>
+        <% }) %>
+
+        <div class="col-md-12 load-more" style="background-color: #4268D6;">
+            <a id="loadMore" style="cursor: pointer; color: white" title="Load More">Показати ще</a>
+        </div>
+
+    </div>
+</div>
+
+<% include admin_footer.ejs %>
+
+<script>
+
+    $(document).ready(function () {
+//-------------------------------------------------------
+        $(".moreBox").slice(0, 6).show();
+        if ($(".blogBox:hidden").length != 0) {
+            $("#loadMore").show();
+        } else if ($(".blogBox:hidden").length <= 6) {
+            $("#loadMore").hide();
+            $(".load-more").hide();
+        }
+        $("#loadMore").on('click', function (e) {
+            e.preventDefault();
+            $(".moreBox:hidden").slice(0, 6).slideDown();
+            if ($(".moreBox:hidden").length == 0) {
+                $("#loadMore").fadeOut('slow');
+                $(".load-more").fadeOut('slow');
+            }
+        });
+    });
+</script>

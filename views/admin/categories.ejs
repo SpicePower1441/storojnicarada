@@ -1,0 +1,48 @@
+<% include admin_header.ejs %>
+<main>
+    <div class="container-fluid">
+        <h1 class="mt-4">Адмін-панель</h1>
+        <ol class="breadcrumb mb-4">
+            <li class="breadcrumb-item"><a href="/admin/dashboard">Адмін-панель</a></li>
+            <li class="breadcrumb-item active">Категорії</li>
+        </ol>
+
+        <% if(categories.length > 0) { %>
+            <table class="table table-striped">
+                <thead>
+                <tr>
+                    <th>Категорія</th>
+                    <th>Видалити</th>
+                </tr>
+                </thead>
+                <tbody>
+                <% categories.forEach(cat => { %>
+                    <tr>
+                        <td><%= cat.title %></td>
+                        <td><a class="confirmDelete"
+                               href="/admin/dashboard/categories/delete-category/<%= cat._id %>">Видалити</a></td>
+                    </tr>
+                <% }); %>
+                </tbody>
+            </table>
+        <% } else { %>
+            <h1>Категорії не знайдено!</h1>
+        <% } %>
+        <br>
+        <hr>
+        <h3>Додати нову категорію</h3>
+        <br>
+        <form action="/admin/dashboard/categories/add-category" method="post" enctype="multipart/form-data">
+            <div class="form-group">
+                <label for="title">Назва категорії</label>
+                <input required value="<%= categories.title %>" type="text" name="title" id="title" class="form-control">
+            </div>
+            <button type="submit" class="btn btn-primary">Додати</button>
+        </form>
+        <br>
+
+    </div>
+</main>
+
+
+<% include admin_footer.ejs %>

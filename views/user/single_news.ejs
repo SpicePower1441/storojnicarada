@@ -1,0 +1,160 @@
+<% include header.ejs %>
+
+<div class="main-container">
+
+    <main class="site-main">
+
+        <!-- Single Post -->
+        <div class="container-fluid no-top-padding no-left-padding no-right-padding single-post" style="margin-top: 0px">
+            <!-- Container -->
+            <div class="container">
+                <div class="row">
+                    <!-- Content Area -->
+                    <div class="col-md-8 col-sm-6 col-xs-6 content-area">
+                        <article class="type-post color-3">
+                            <div class="entry-cover">
+                                <img class="img-fluid" style="width: 1000px" src="/images/<%= postsSlug._id %>/<%= postsSlug.image %>"
+                                     alt="Post"/>
+                                <div class="entry-header">
+                                    <% var catSlug = postsSlug.categories.replace(/\s+/g, '-').toLowerCase(); %>
+                                    <div class="post-category"><a href="/news/category/<%= catSlug %>"
+                                                                  title="<%= postsSlug.categories %>"><%= postsSlug.categories %></a>
+                                    </div>
+                                    <h3 class="entry-title"><%= postsSlug.title %></h3>
+                                    <div class="entry-footer">
+                                        <% var options = {year: 'numeric', month: 'long', day: 'numeric'}; %>
+                                        <span class="post-date"><a><%= postsSlug.createdAt.toLocaleDateString('ua-UA', options) %></a></span>
+                                        <span class="post-like"><i class="fa fa-user"></i><a
+                                                    href="search?search=<%= postsSlug.createdBy %>"><%= postsSlug.createdBy %></a></span>
+                                        <span class="post-view"><i
+                                                    class="fa fa-comment"></i><a><%= postsSlug.comments.length %></a></span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="entry-content">
+                                <%- postsSlug.sanitizedHtml %>
+                            </div>
+                            <hr>
+                        </article>
+
+                        <!-- Comment Area -->
+
+                        <div id="comments" class="comments-area">
+                            <h2 class="comments-title">Коментарів <span>(<%= postsSlug.comments.length %>)</span></h2>
+
+                            <% if (postsSlug.comments.length > 0) { %>
+
+                                <ol class="comment-list">
+                                    <% postsSlug.comments.forEach(comment => { %>
+                                        <li class="comment byuser comment-author-admin bypostauthor even thread-even depth-1 parent">
+                                            <div class="comment-body">
+                                                <footer class="comment-meta">
+                                                    <div class="comment-author vcard">
+                                                        <% if ( comment.username == "admin" ) { %>
+                                                            <img style="height: 80px; width: 80px" alt="img"
+                                                                 src="https://logodix.com/logo/1707088.png"
+                                                                 class="avatar avatar-72 photo"/>
+                                                        <% } else { %>
+                                                            <img style="height: 80px; width: 80px" alt="img"
+                                                                 src="/assets/images/comment1.jpg"
+                                                                 class="avatar avatar-72 photo"/>
+                                                        <% } %>
+                                                        <b class="fn"><%= comment.username %></b>
+                                                    </div>
+                                                    <% var options = {
+                                                        year: 'numeric',
+                                                        month: 'long',
+                                                        day: 'numeric'
+                                                    }; %>
+                                                    <div class="comment-metadata">
+                                                        <a><%= comment.postedAt.toLocaleDateString('ua-UA', options) %></a>
+                                                    </div>
+                                                </footer>
+                                                <div class="comment-content">
+                                                    <p><%= comment.comment %></p>
+                                                </div>
+                                            </div>
+                                        </li>
+                                    <% }) %>
+                                </ol><!-- .comment-list -->
+                            <% } %>
+
+                            <!-- Comment Form -->
+                            <div id="respond" class="comment-respond">
+                                <h2 id="reply-title" class="comment-reply-title">Залишити коментар</h2>
+                                <form method="post" id="comment-form" action="/news/<%= postsSlug.slug %>/comment"
+                                      class="comment-form">
+                                    <input type="hidden" id="posts_id" name="posts_id" value="<%= postsSlug._id %>">
+                                    <p class="comment-form-author">
+                                        <input id="username" name="username" placeholder="Ім'я *" required="required"
+                                               type="text"/>
+                                    </p>
+                                    <p class="comment-form-email">
+                                        <input id="email" name="email" placeholder="Електронна пошта *"
+                                               required="required" type="email"/>
+                                    </p>
+                                    <p class="comment-form-comment">
+                                        <textarea id="comment" placeholder="Ваш коментар *" name="comment" rows="5"
+                                                  required="required"></textarea>
+                                    </p>
+                                    <p class="form-submit">
+                                        <input name="submit" class="submit" value="Додати" type="submit"/>
+                                    </p>
+                                </form>
+                            </div><!-- Comment Form /- -->
+                        </div><!-- Comment Area /- -->
+
+                    </div><!-- Content Area /- -->
+
+                    <!-- Widget Area -->
+                    <div class="col-md-4 col-sm-6 col-xs-6 widget-area">
+                        <!-- Widget Recent Post -->
+                        <aside class="widget widget_latestposts">
+                            <h3 class="widget-title">Останні новини</h3>
+
+                            <% for (let j = 0; j <= 2; j++) { %>
+                                <% for (let i = AllPosts[j]; i <= AllPosts[j]; i++) { %>
+                                    <div class="latest-content-box">
+                                        <div class="latest-content color-5">
+                                            <a href="/news/<%= i.slug %>" title="Recent Posts"><i><img
+                                                            style="width: 100px; height: 65px"
+                                                            src="/images/<%= i._id %>/<%= i.image %>"
+                                                            class="wp-post-image" alt="blog-1"></i></a>
+                                            <% var options = {year: 'numeric', month: 'long', day: 'numeric'}; %>
+                                            <span><a title="<%= i.categories %>"><%= i.categories %></a> <a><%= i.createdAt.toLocaleDateString('ua-UA', options) %></a></span>
+                                            <h5><a title="<%= i.title %>"><%= i.title %> </a></h5>
+                                        </div>
+                                    </div>
+                                <% } %>
+                            <% } %>
+
+                            <div class="see-more"><a href="/news" title="Більше новини">Більше новин</a></div>
+                        </aside><!-- Widget Recent Post -->
+
+                        <!-- Photos -->
+                        <aside class="widget widget_video">
+                            <h3 class="widget-title">Галерея</h3>
+                            <div class="video-block">
+
+                                <% for (var i = 0 ; (i < 3) && (i < gallery.length) ; i++) { %>
+                                    <% var r = Math.floor(Math.random() * (gallery.length - i)) + i; %>
+                                    <% var city = gallery[r]; %>
+                                    <% gallery[r] = gallery[i]; %>
+                                    <% gallery[i] = city; %>
+                                    <div class="video-post">
+                                        <a href="/gallery"><img src="/images/gallery/<%= city.slug %>/<%= city.image %>"
+                                                                alt="Фото"/></a>
+                                    </div>
+                                <% } %>
+                            </div>
+                            <div class="see-more"><a href="/gallery" title="Більше фото">Більше фото</a></div>
+                        </aside><!-- Popular Video /- -->
+                    </div><!-- Widget Area /- -->
+                </div>
+            </div><!-- Container /- -->
+        </div><!-- Single Post /- -->
+    </main>
+
+</div>
+
+<% include footer.ejs %>

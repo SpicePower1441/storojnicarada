@@ -1,0 +1,85 @@
+<% include admin_header.ejs %>
+<main>
+    <div class="container-fluid">
+        <h1 class="mt-4">Адмін-панель</h1>
+        <ol class="breadcrumb mb-4">
+            <li class="breadcrumb-item"><a href="/admin/dashboard">Адмін-панель</a></li>
+            <li class="breadcrumb-item"><a href="/admin/dashboard/post/<%= slug %>"><%= title %></a></li>
+            <li class="breadcrumb-item active">Редагувати пост</li>
+        </ol>
+
+        <form action="/admin/dashboard/post/edit-post/<%= id %>" method="post" enctype="multipart/form-data">
+            <div class="form-group">
+                <label for="title">Заголовок</label>
+                <input required value="<%= title %>" type="text" name="title" id="title" class="form-control">
+            </div>
+            <div class="form-group">
+                <label for="description">Опис</label>
+                <textarea name="description" id="description" class="form-control"><%= description %></textarea>
+            </div>
+            <div class="form-group">
+                <label for="">Категорія</label>
+                <select name="categories" class="form-control">
+                    <% categories.forEach(function (cat) { %>
+                        <option value="<%= cat.slug %>"
+                        <% if (cat.slug == catSlug) { %>
+                                selected="selected"
+                                <% } %>
+                        ><%= cat.title %></option>
+                    <% }); %>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="markdown">Зміст</label>
+                <textarea required name="markdown" id="ta" class="form-control"><%= markdown %></textarea>
+            </div>
+
+            <div class="form-group">
+                <label for="">Поточне зображення</label>
+                <p>
+                    <img id="noimage" src="/images/<%= id %>/<%= image %>" alt="">
+                </p>
+            </div>
+
+            <div class="form-group">
+                <label for="">Замінити зображення</label>
+                <div class="custom-file">
+                    <input type="file" class="custom-file-input" name="image" id="img" lang="ua" value="">
+                    <label class="custom-file-label" for="img">Оберіть файл</label>
+                </div>
+                <img src="#" id="imgPreview" alt="">
+            </div>
+
+            <input type="hidden" name="pimage" value="<%= image %>">
+
+            <a href="/admin/dashboard/post/<%= slug %>" class="btn btn-secondary">Назад</a>
+            <button type="submit" class="btn btn-primary">Зберегти</button>
+        </form>
+        <br>
+
+    </div>
+</main>
+
+
+<script>
+
+    function readURL(input) {
+        if (input.files && input.files[0]) {
+            var reader = new FileReader();
+
+            reader.onload = function (e) {
+                $("#imgPreview").attr('src', e.target.result).width(100).height(100);
+            }
+
+            reader.readAsDataURL(input.files[0]);
+        }
+    }
+
+    $("#img").change(function () {
+        readURL(this);
+    });
+
+
+</script>
+
+<% include admin_footer.ejs %>

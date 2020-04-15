@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<!--[if lt IE 7 ]>
+<html class="ie6"> <![endif]-->
+<!--[if IE 7 ]>
+<html class="ie7"> <![endif]-->
+<!--[if IE 8 ]>
+<html class="ie8"> <![endif]-->
+<!--[if IE 9 ]>
+<html class="ie9"> <![endif]-->
+<!--[if (gt IE 9)|!(IE)]><!-->
+<html lang="en"><!--<![endif]-->
+<head>
+    <meta charset="utf-8">
+
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title><%= title %></title>
+
+    <!-- Standard Favicon -->
+    <link rel="icon" type="image/x-icon" href="/assets/images/logo.png"/>
+
+    <!-- For iPhone 4 Retina display: -->
+    <link rel="apple-touch-icon-precomposed" href="/assets/images//apple-touch-icon-114x114-precomposed.png">
+
+    <!-- For iPad: -->
+    <link rel="apple-touch-icon-precomposed" href="/assets/images//apple-touch-icon-72x72-precomposed.png">
+
+    <!-- For iPhone: -->
+    <link rel="apple-touch-icon-precomposed" href="/assets/images//apple-touch-icon-57x57-precomposed.png">
+
+    <!-- Library - Google Font Familys -->
+    <link href="https://fonts.googleapis.com/css?family=Bentham|Fira+Sans:100,100i,200,200i,300,300i,400,400i,500,500i,600,600i,700,700i,800,800i,900,900i|Lato:100,100i,300,300i,400,400i,700,700i,900,900i|Montserrat:400,700|Noto+Serif:400,400i,700,700i|Oswald:200,300,400,500,600,700|Roboto:100,100i,300,300i,400,400i,500,500i,700,700i,900,900i"
+          rel="stylesheet">
+
+    <!-- Library -->
+    <link href="/assets/css/lib.css" rel="stylesheet">
+
+    <!-- Custom - Common CSS -->
+    <link href="/assets/css/plugins.css" rel="stylesheet">
+    <link href="/assets/css/elements.css" rel="stylesheet">
+    <link href="/assets/css/rtl.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="/assets/style.css">
+    <link rel="stylesheet" href="/stylesheets/style.css">
+
+    <!--[if lt IE 9]>
+    <script src="/assets/js/html5/respond.min.js"></script>
+    <![endif]-->
+
+</head>
+
+<body>
+
+<!-- Loader -->
+<div id="site-loader" class="load-complete">
+    <div class="loader">
+        <div class="loader-inner ball-clip-rotate">
+            <div></div>
+        </div>
+    </div>
+</div><!-- Loader /- -->
+
+<!-- Header Section -->
+<header class="header_s header_s1">
+    <!-- SidePanel -->
+    <div id="slidepanel">
+        <!-- Top Header -->
+        <div class="container-fluid no-right-padding no-left-padding top-header">
+            <!-- Container -->
+            <div class="container">
+                <!-- Row -->
+                <div class="row">
+                    <div class="col-md-4 col-sm-4 col-xs-3 top-menu">
+                        <a><i class="icon_menu"></i> Більше</a>
+                        <ul>
+                            <% if (user) { %>
+                                <li><a href="/logout" title="Logout">Вийти</a></li>
+
+                            <% } else { %>
+                                <li><a href="/login" title="Login">Увійти</a></li>
+
+                            <% } %>
+                        </ul>
+                    </div>
+                    <div class="col-md-4 col-sm-4 col-xs-3 top-social">
+                        <a><i class="social_share"></i></a>
+                        <ul>
+                            <li><a href="https://www.facebook.com/pg/НаСторожі-спільнота-свідомих-та-небайдужих-жителів-сСторожниця-838427556261054/posts/" title="Facebook"><i class="fa fa-facebook"></i></a></li>
+                            <li><a href="https://twitter.com/hashtag/сторожниця" title="Twitter"><i class="fa fa-twitter"></i></a></li>
+                        </ul>
+                    </div>
+                    <div class="col-md-4 col-sm-4 col-xs-6 top-search">
+                        <form method="get" class="searchform" action="/search">
+                            <div class="input-group">
+                                <input placeholder="Пошук" name="search" class="form-control" required="" type="text">
+                                <span class="input-group-btn">
+										<button class="btn btn-default" type="submit"><i
+                                                    class="fa fa-search"></i></button>
+									</span>
+                            </div>
+                        </form>
+                    </div>
+                </div><!-- Row /- -->
+            </div><!-- Container /- -->
+        </div><!-- Top Header /- -->
+
+        <!-- Middle Header -->
+        <div class="container-fluid no-left-padding no-right-padding no-bottom-padding no-top-padding middle-header">
+            <!-- Container -->
+            <div class="container">
+                <!-- Row -->
+                <div class="row">
+                    <div class="col-md-2 logo-block">
+                        <a href="/"><img src="/assets/images/logo.png" alt="Logo"/></a>
+                    </div>
+                    <div class="col-md-10" style="text-align: center; color: #0c5460; margin-top: 25px">
+                        <h1 style="font-size: 40px; font-family: 'Montserrat', sans-serif">Сторожницька сільська
+                            рада</h1>
+                        <p style="font-size: 20px; font-family: 'Montserrat', sans-serif">Закарпатська область,
+                            Ужгородський район</p>
+                    </div>
+                </div><!-- Row /- -->
+            </div><!-- Container /- -->
+        </div><!-- Middle Header /- -->
+
+    </div><!-- SidePanel /- -->
+
+    <!-- Ownavigation -->
+    <nav class="navbar ownavigation">
+        <!-- Container -->
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar"
+                        aria-expanded="false" aria-controls="navbar">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+            </div>
+            <div id="navbar" class="navbar-collapse collapse">
+                <ul class="nav navbar-nav">
+                    <li class="dropdown active">
+                        <a href="/" class="dropdown-toggle" role="button" aria-haspopup="true" aria-expanded="false">Головна</a>
+                    </li>
+                    <li class="dropdown mega-dropdown">
+                        <a href="/news" class="dropdown-toggle" role="button" aria-haspopup="true"
+                           aria-expanded="false"
+                           title="News">Новини</a>
+                        <i class="ddl-switch fa fa-angle-down"></i>
+                        <div class="dropdown-menu megamenu">
+                            <div class="col-md-2 col-sm-12 megamenu-categories">
+                                <ul class="nav nav-tabs" role="tablist">
+                                    <li role="presentation"><a href="/news"
+                                                               title="Всі новини">Всі новини</a></li>
+                                    <% categories.forEach(cat => { %>
+                                        <li role="presentation"><a href="/news/category/<%= cat.slug %>"
+                                                                   title="<%= cat.title %>"><%= cat.title %></a></li>
+                                    <% }) %>
+                                </ul>
+                            </div>
+
+
+                            <div class="col-md-10 col-sm-12 col-xs-12 megamenu-post tab-content">
+                                <div role="tabpanel" class="tab-pane active" id="">
+
+                                    <% for (var i = 0 ; (i < 3) && (i < posts.length) ; i++) { %>
+                                        <% var r = Math.floor(Math.random() * (posts.length - i)) + i; %>
+                                        <% var city = posts[r]; %>
+                                        <% posts[r] = posts[i]; %>
+                                        <% posts[i] = city; %>
+                                        <div class="col-md-3 col-sm-4 col-xs-4">
+                                            <div class="type-post">
+                                                <div class="entry-cover"><a href="/news/<%= city.slug %>"><img style="width: 200px; height: 150px"
+                                                                src="/images/<%= city._id %>/<%= city.image %>" alt="Post"/></a>
+                                                </div>
+                                                <h3 class="entry-title"><a href="/news/<%= city.slug %>"><%= city.title %></a></h3>
+                                            </div>
+                                        </div>
+                                    <% } %>
+
+                                </div>
+                            </div>
+
+
+                        </div>
+                    </li>
+                    <li><a href="/info-page" title="Info">Довідник</a></li>
+                    <li><a href="/gallery" title="Gallery">Галерея</a></li>
+                    <li><a href="/contact-us" title="Contact Us">Контакти</a></li>
+                    <% if(user) { %>
+                        <li><a href="/admin/dashboard" title="Admin">Адмін-панель</a></li>
+                    <% } %>
+                </ul>
+            </div>
+            <div id="loginpanel" class="desktop-hide">
+                <div class="right" id="toggle">
+                    <a id="slideit" href="#slidepanel"><i class="fo-icons fa fa-inbox"></i></a>
+                    <a id="closeit" href="#slidepanel"><i class="fo-icons fa fa-close"></i></a>
+                </div>
+            </div>
+        </div><!-- Container /- -->
+    </nav><!-- Ownavigation /- -->
+
+</header><!-- Header Section /- -->
+<main role="main" class="container">
+    <br>
+<%- messages('messages', locals) %>
+
+</main>

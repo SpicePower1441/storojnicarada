@@ -1,0 +1,64 @@
+<% include header.ejs %>
+
+<br>
+<div class="main-container">
+    <main class="site-main">
+        <!-- Largest Post -->
+        <div class="container-fluid no-left-padding no-right-padding largest-post-block">
+            <!-- Container -->
+            <div class="container">
+                <!-- Section Header -->
+                <div class="section-header">
+                    <h3>Фотографії</h3>
+                </div><!-- Section Header /- -->
+
+                <!-- Row -->
+                <div class="row">
+                    <% if (gallery.photos.length > 0) { %>
+                    <% gallery.photos.forEach(photo => { %>
+                        <div class="col-md-4 col-sm-6 col-xs-6 blogBox moreBox" style="display: none">
+                            <div class="type-post color-1">
+                                <div class=""><a><img
+                                                style="height: 250px; width: 500px"
+                                                src="/images/gallery/<%= gallery.slug %>/<%= photo.image %>"
+                                                alt="Post"/></a></div>
+                            </div>
+                        </div>
+                    <% }) %>
+                    <% } else { %>
+                        <h3>Альбом порожній</h3>
+                    <% } %>
+                </div>
+                <div class="col-md-12  load-more">
+                    <a id="loadMore" title="Load More">Показати ще</a>
+                </div>
+            </div><!-- Row /- -->
+
+
+        </div><!-- Container /- -->
+
+    </main>
+</div>
+<% include footer.ejs %>
+
+<script>
+
+    $(document).ready(function () {
+//-------------------------------------------------------
+        $(".moreBox").slice(0, 9).show();
+        if ($(".blogBox:hidden").length != 0) {
+            $("#loadMore").show();
+        } else if ($(".blogBox:hidden").length <= 9) {
+            $("#loadMore").hide();
+            $(".load-more").hide();
+        }
+        $("#loadMore").on('click', function (e) {
+            e.preventDefault();
+            $(".moreBox:hidden").slice(0, 6).slideDown();
+            if ($(".moreBox:hidden").length == 0) {
+                $("#loadMore").fadeOut('slow');
+                $(".load-more").fadeOut('slow');
+            }
+        });
+    });
+</script>

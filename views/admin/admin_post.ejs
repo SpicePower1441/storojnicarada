@@ -1,0 +1,134 @@
+<% include admin_header.ejs %>
+
+<main>
+
+    <!-- Container -->
+    <div class="container-fluid">
+        <h1 class="mt-4">Адмін-панель</h1>
+        <ol class="breadcrumb mb-4">
+            <li class="breadcrumb-item"><a href="/admin/dashboard">Адмін-панель</a></li>
+            <li class="breadcrumb-item active"><%= posts.title %></li>
+        </ol>
+        <div class="container">
+            <a href="/admin/dashboard/post/edit-post/<%= posts.id %>" class="btn btn-outline-info">Редагувати</a>
+            <form action="/admin/dashboard/post/<%= posts.id %>?_method=DELETE" method="POST" class="d-inline">
+                <button type="submit" class="btn btn-outline-danger">Видалити</button>
+
+            </form>
+            <div class="row">
+                <!-- Content Area -->
+                <div class="col-md-12 col-sm-6 col-xs-6 content-area">
+                    <br>
+                    <article class="type-post color-3">
+                        <div class="entry-cover" style="width: 800px;">
+                            <img class="img-fluid" style="width: 800px"
+                                 src="/images/<%= posts._id %>/<%= posts.image %>"
+                                 alt="Post"/>
+                            <div class="entry-header">
+                                <% var catSlug = posts.categories.replace(/\s+/g, '-').toLowerCase(); %>
+                                <div class="padding-20 post-category"><a
+                                            href="/admin/dashboard/search?search=<%= catSlug %>"
+                                            title="<%= posts.categories %>"><%= posts.categories %></a>
+                                </div>
+                                <h3 class="entry-title"><%= posts.title %></h3>
+                                <div class="entry-footer">
+                                    <% var options = {year: 'numeric', month: 'long', day: 'numeric'}; %>
+                                    <span class="post-date"><a><%= posts.createdAt.toLocaleDateString('ua-UA', options) %></a></span>
+                                    <span class="post-like"><i class="fa fa-user"></i><a
+                                                href="/admin/dashboard/search?search=<%= posts.createdBy %>"><%= posts.createdBy %></a></span>
+                                    <span class="post-view"><i
+                                                class="fa fa-comment"></i><a><%= posts.comments.length %></a></span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="entry-content">
+                            <%- posts.sanitizedHtml %>
+                        </div>
+                        <hr>
+                    </article>
+
+                    <!-- Comment Area -->
+
+                    <div id="comments" class="comments-area">
+                        <h2 class="comments-title">Коментарів <span
+                                    style="color: #09AEEF;">(<%= posts.comments.length %>)</span></h2>
+
+                        <% if (posts.comments.length > 0) { %>
+
+                            <ol class="comment-list">
+                                <% posts.comments.forEach(comment => { %>
+                                    <li class="comment byuser comment-author-admin bypostauthor even thread-even depth-1 parent">
+                                        <div class="comment-body">
+                                            <footer class="comment-meta">
+                                                <div class="comment-author vcard">
+                                                    <% if ( comment.username == "admin" ) { %>
+                                                        <img style="height: 80px; width: 80px" alt="img"
+                                                             src="https://logodix.com/logo/1707088.png"
+                                                             class="avatar avatar-72 photo"/>
+                                                    <% } else { %>
+                                                        <img style="height: 80px; width: 80px" alt="img"
+                                                             src="/assets/images/comment1.jpg"
+                                                             class="avatar avatar-72 photo"/>
+                                                    <% } %>
+                                                    <b class="fn"><%= comment.username %>
+                                                        <form
+                                                                action="/admin/dashboard/post/<%= posts.id %>/<%= comment.id %>?_method=DELETE"
+                                                                method="POST"
+                                                                class="d-inline">
+                                                            <input type="hidden" name="posts_id"
+                                                                   value="<%= posts._id %>">
+                                                            <input type="hidden" name="posts_slug"
+                                                                   value="<%= posts.slug %>">
+                                                            <input type="hidden" name="comment_id"
+                                                                   value="<%= comment._id %>">
+                                                            <button type="submit" class="btn btn-sm btn-outline-danger">
+                                                                Видалити
+                                                            </button>
+                                                        </form>
+                                                        </span>
+                                                    </b>
+                                                </div>
+                                                <% var options = {
+                                                    year: 'numeric',
+                                                    month: 'long',
+                                                    day: 'numeric'
+                                                }; %>
+                                                <div class="comment-metadata">
+                                                    <a><%= comment.postedAt.toLocaleDateString('ua-UA', options) %></a>
+                                                </div>
+                                            </footer>
+                                            <div class="comment-content">
+                                                <p><%= comment.comment %></p>
+                                            </div>
+                                        </div>
+                                    </li>
+                                <% }) %>
+                            </ol><!-- .comment-list -->
+                        <% } %>
+
+                        <!-- Comment Form -->
+                        <div id="respond" class="comment-respond">
+                            <h2 id="reply-title" class="comment-reply-title">Коментар від імені адміністратора</h2>
+                            <form id="commentForm" method="post"
+                                  action="/admin/dashboard/post/<%= posts.slug %>/comment"
+                                  class="comment-form">
+                                <p class="comment-form-comment">
+                                        <textarea id="comment" placeholder="Ваш коментар *" name="comment" rows="5"
+                                                  required="required"></textarea>
+                                </p>
+                                <p class="form-submit">
+                                    <input style="background-color: #09AEEF" name="submit" class="submit" value="Додати"
+                                           type="submit"/>
+                                </p>
+                            </form>
+                            <br>
+                        </div><!-- Comment Form /- -->
+                    </div><!-- Comment Area /- -->
+
+                </div><!-- Content Area /- -->
+            </div>
+        </div>
+    </div>
+</main>
+
+<% include admin_footer.ejs %>

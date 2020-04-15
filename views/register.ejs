@@ -1,0 +1,31 @@
+<% include user/header %>
+
+<h1><%= title %></h1>
+
+<form method="post" action="/register">
+    <div class="form-group">
+        <label for="">Логін</label>
+        <input type="text" name="username" class="form-control" placeholder="Логін">
+    </div>
+
+    <div class="form-group">
+        <label for="">Пошта</label>
+        <input type="text" name="email" class="form-control" placeholder="Пошта">
+    </div>
+
+    <div class="form-group">
+        <label for="">Пароль</label>
+        <input type="password" name="password" class="form-control" placeholder="Пароль">
+    </div>
+
+    <div class="form-group">
+        <label for="">Підтвердіть пароль</label>
+        <input type="password" name="password2" class="form-control" placeholder="Підтвердіть пароль">
+    </div>
+
+    <button type="submit" class="btn btn-primary">Зареєструватися</button>
+
+</form>
+
+<% include user/footer %>
+

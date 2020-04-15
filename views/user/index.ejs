@@ -1,0 +1,333 @@
+<% include header.ejs %>
+
+<div class="main-container">
+    <main class="site-main">
+
+        <!-- Slider Section -->
+        <div class="container-fluid no-left-padding no-right-padding slider-section">
+            <!-- Container -->
+            <div class="container">
+                <div id="slider-1" class="carousel slide" data-ride="carousel">
+
+                    <!-- Wrapper for slides -->
+                    <div class="carousel-inner" role="listbox">
+                        <div class="item active">
+                            <% var posts2 = posts[Math.floor(Math.random() * posts.length)]; %>
+                            <div class="col-md-6 col-sm-6 col-xs-6 big-post">
+                                <!-- Type Post -->
+                                <div class="type-post color-1">
+                                    <div class="entry-cover"><a href="/news/<%= posts2.slug %>"><img
+                                                    style="height: 519px"
+                                                    src="/images/<%= posts2._id %>/<%= posts2.image %>"
+                                                    alt="Post"/></a></div>
+                                    <div class="entry-content">
+                                        <div class="post-category"><a href="#"
+                                                                      title="business"><%= posts2.categories %></a>
+                                        </div>
+                                        <h3 class="entry-title"><a
+                                                    href="/news/<%= posts2.slug %>"><%= posts2.title %></a></h3>
+                                        <p><%= posts2.description %></p>
+                                        <div class="entry-footer">
+                                            <% var options = {year: 'numeric', month: 'long', day: 'numeric'}; %>
+                                            <span class="post-date"><a
+                                                        href="#"><%= posts2.createdAt.toLocaleDateString('ua-UA', options) %></a></span>
+                                            <span class="post-like"><i class="fa fa-user"></i><a
+                                                        href="#"><%= posts2.createdBy %></a></span>
+                                            <span class="post-view"><i class="fa fa-comment"></i><a
+                                                        href="#"><%= posts2.comments.length %></a></span>
+                                        </div>
+                                        <a href="/news/<%= posts2.slug %>" title="Read More">Читати далі... <i
+                                                    class="fa fa-angle-right"></i></a>
+                                    </div>
+                                </div><!-- Type Post /- -->
+                            </div>
+
+                            <% for (var i = 0 ; (i < 4) && (i < posts.length) ; i++) { %>
+                                <% var r = Math.floor(Math.random() * (posts.length - i)) + i; %>
+                                <% var city = posts[r]; %>
+                                <% posts[r] = posts[i]; %>
+                                <% posts[i] = city; %>
+                                <div class="col-md-3 col-sm-3 col-xs-6 thumb-post">
+                                    <!-- Type Post -->
+                                    <div class="type-post color-1">
+                                        <div class="entry-cover"><a href="/news/<%= city.slug %>"><img
+                                                        style="height: 257px; width: 300px"
+                                                        src="/images/<%= city._id %>/<%= city.image %>"
+                                                        alt="Post"/></a></div>
+                                        <div class="entry-content">
+                                            <div class="post-category"><a href="#"
+                                                                          title="business"><%= city.categories %></a>
+                                            </div>
+                                            <h3 class="entry-title"><a
+                                                        href="/news/<%= city.slug %>"><%= city.title %></a></h3>
+                                            <p><%= city.description %></p>
+                                            <div class="entry-footer">
+                                                <% var options = {
+                                                    year: 'numeric',
+                                                    month: 'long',
+                                                    day: 'numeric'
+                                                }; %>
+                                                <span class="post-date"><a
+                                                            href="#"><%= city.createdAt.toLocaleDateString('ua-UA', options) %></a></span>
+                                                <span class="post-like"><i class="fa fa-user"></i><a
+                                                            href="#"><%= city.createdBy %></a></span>
+                                                <span class="post-view"><i class="fa fa-comment"></i><a
+                                                            href="#"><%= city.comments.length %></a></span>
+                                            </div>
+                                            <a href="/news/<%= city.slug %>" title="Read More">Читати далі... <i
+                                                        class="fa fa-angle-right"></i></a>
+                                        </div>
+                                    </div><!-- Type Post /- -->
+                                </div>
+                            <% } %>
+                        </div>
+
+                        <div class="item">
+                            <% var posts2 = posts[Math.floor(Math.random() * posts.length)]; %>
+                            <div class="col-md-6 col-sm-6 col-xs-6 big-post">
+                                <!-- Type Post -->
+                                <div class="type-post color-1">
+                                    <div class="entry-cover"><a href="/news/<%= posts2.slug %>"><img
+                                                    style="height: 519px"
+                                                    src="/images/<%= posts2._id %>/<%= posts2.image %>"
+                                                    alt="Post"/></a></div>
+                                    <div class="entry-content">
+                                        <div class="post-category"><a href="#"
+                                                                      title="business"><%= posts2.categories %></a>
+                                        </div>
+                                        <h3 class="entry-title"><a
+                                                    href="/news/<%= posts2.slug %>"><%= posts2.title %></a></h3>
+                                        <p><%= posts2.description %></p>
+                                        <div class="entry-footer">
+                                            <% var options = {year: 'numeric', month: 'long', day: 'numeric'}; %>
+                                            <span class="post-date"><a
+                                                        href="#"><%= posts2.createdAt.toLocaleDateString('ua-UA', options) %></a></span>
+                                            <span class="post-like"><i class="fa fa-user"></i><a
+                                                        href="#"><%= posts2.createdBy %></a></span>
+                                            <span class="post-view"><i class="fa fa-comment"></i><a
+                                                        href="#"><%= posts2.comments.length %></a></span>
+                                        </div>
+                                        <a href="/news/<%= posts2.slug %>" title="Read More">Читати далі... <i
+                                                    class="fa fa-angle-right"></i></a>
+                                    </div>
+                                </div><!-- Type Post /- -->
+                            </div>
+
+                            <% for (var i = 0 ; (i < 4) && (i < posts.length) ; i++) { %>
+                                <% var r = Math.floor(Math.random() * (posts.length - i)) + i; %>
+                                <% var city = posts[r]; %>
+                                <% posts[r] = posts[i]; %>
+                                <% posts[i] = city; %>
+                                <div class="col-md-3 col-sm-3 col-xs-6 thumb-post">
+                                    <!-- Type Post -->
+                                    <div class="type-post color-1">
+                                        <div class="entry-cover"><a href="/news/<%= city.slug %>"><img
+                                                        style="height: 257px; width: 300px"
+                                                        src="/images/<%= city._id %>/<%= city.image %>"
+                                                        alt="Post"/></a></div>
+                                        <div class="entry-content">
+                                            <div class="post-category"><a href="#"
+                                                                          title="business"><%= city.categories %></a>
+                                            </div>
+                                            <h3 class="entry-title"><a
+                                                        href="/news/<%= city.slug %>"><%= city.title %></a></h3>
+                                            <p><%= city.description %></p>
+                                            <div class="entry-footer">
+                                                <% var options = {
+                                                    year: 'numeric',
+                                                    month: 'long',
+                                                    day: 'numeric'
+                                                }; %>
+                                                <span class="post-date"><a
+                                                            href="#"><%= city.createdAt.toLocaleDateString('ua-UA', options) %></a></span>
+                                                <span class="post-like"><i class="fa fa-user"></i><a
+                                                            href="#"><%= city.createdBy %></a></span>
+                                                <span class="post-view"><i class="fa fa-comment"></i><a
+                                                            href="#"><%= city.comments.length %></a></span>
+                                            </div>
+                                            <a href="/news/<%= city.slug %>" title="Read More">Читати далі... <i
+                                                        class="fa fa-angle-right"></i></a>
+                                        </div>
+                                    </div><!-- Type Post /- -->
+                                </div>
+                            <% } %>
+
+                        </div>
+                        <div class="item">
+                            <% var posts2 = posts[Math.floor(Math.random() * posts.length)]; %>
+                            <div class="col-md-6 col-sm-6 col-xs-6 big-post">
+                                <!-- Type Post -->
+                                <div class="type-post color-1">
+                                    <div class="entry-cover"><a href="/news/<%= posts2.slug %>"><img
+                                                    style="height: 519px"
+                                                    src="/images/<%= posts2._id %>/<%= posts2.image %>"
+                                                    alt="Post"/></a></div>
+                                    <div class="entry-content">
+                                        <div class="post-category"><a href="#"
+                                                                      title="business"><%= posts2.categories %></a>
+                                        </div>
+                                        <h3 class="entry-title"><a
+                                                    href="/news/<%= posts2.slug %>"><%= posts2.title %></a></h3>
+                                        <p><%= posts2.description %></p>
+                                        <div class="entry-footer">
+                                            <% var options = {year: 'numeric', month: 'long', day: 'numeric'}; %>
+                                            <span class="post-date"><a
+                                                        href="#"><%= posts2.createdAt.toLocaleDateString('ua-UA', options) %></a></span>
+                                            <span class="post-like"><i class="fa fa-user"></i><a
+                                                        href="#"><%= posts2.createdBy %></a></span>
+                                            <span class="post-view"><i class="fa fa-comment"></i><a
+                                                        href="#"><%= posts2.comments.length %></a></span>
+                                        </div>
+                                        <a href="/news/<%= posts2.slug %>" title="Read More">Читати далі... <i
+                                                    class="fa fa-angle-right"></i></a>
+                                    </div>
+                                </div><!-- Type Post /- -->
+                            </div>
+                            <% for (var i = 0 ; (i < 4) && (i < posts.length) ; i++) { %>
+                                <% var r = Math.floor(Math.random() * (posts.length - i)) + i; %>
+                                <% var city = posts[r]; %>
+                                <% posts[r] = posts[i]; %>
+                                <% posts[i] = city; %>
+                                <div class="col-md-3 col-sm-3 col-xs-6 thumb-post">
+                                    <!-- Type Post -->
+                                    <div class="type-post color-1">
+                                        <div class="entry-cover"><a href="/news/<%= city.slug %>"><img
+                                                        style="height: 257px; width: 300px"
+                                                        src="/images/<%= city._id %>/<%= city.image %>"
+                                                        alt="Post"/></a></div>
+                                        <div class="entry-content">
+                                            <div class="post-category"><a href="#"
+                                                                          title="business"><%= city.categories %></a>
+                                            </div>
+                                            <h3 class="entry-title"><a
+                                                        href="/news/<%= city.slug %>"><%= city.title %></a></h3>
+                                            <p><%= city.description %></p>
+                                            <div class="entry-footer">
+                                                <% var options = {
+                                                    year: 'numeric',
+                                                    month: 'long',
+                                                    day: 'numeric'
+                                                }; %>
+                                                <span class="post-date"><a
+                                                            href="#"><%= city.createdAt.toLocaleDateString('ua-UA', options) %></a></span>
+                                                <span class="post-like"><i class="fa fa-user"></i><a
+                                                            href="#"><%= city.createdBy %></a></span>
+                                                <span class="post-view"><i class="fa fa-comment"></i><a
+                                                            href="#"><%= city.comments.length %></a></span>
+                                            </div>
+                                            <a href="/news/<%= city.slug %>" title="Read More">Читати далі... <i
+                                                        class="fa fa-angle-right"></i></a>
+                                        </div>
+                                    </div><!-- Type Post /- -->
+                                </div>
+                            <% } %>
+                        </div>
+                    </div>
+                    <!-- Indicators -->
+                    <ol class="carousel-indicators">
+                        <li data-target="#slider-1" data-slide-to="0" class="active"></li>
+                        <li data-target="#slider-1" data-slide-to="1"></li>
+                        <li data-target="#slider-1" data-slide-to="2"></li>
+                    </ol>
+                </div>
+            </div><!-- Container /- -->
+        </div><!-- Slider Section -->
+
+        <!-- Recent Post -->
+        <div class="container-fluid no-left-padding no-right-padding recent-post">
+            <!-- Container -->
+            <div class="container">
+                <div class="section-header">
+                    <h3>Останні новини</h3>
+                </div>
+                <!-- Row -->
+                <div class="row">
+
+                    <% for (let j = 0; j <= 5; j++) { %>
+                        <% for (let i = AllPosts[j]; i <= AllPosts[j]; i++) { %>
+                            <div class="col-md-4 col-sm-6 col-xs-6">
+                                <!-- Type Post -->
+                                <div class="type-post color-1">
+                                    <div class="entry-cover"><a href="/news/<%= i.slug %>"><img
+                                                    style="height: 250px; width: 500px"
+                                                    src="/images/<%= i._id %>/<%= i.image %>"
+                                                    alt="Post"/></a></div>
+                                    <div class="entry-content">
+                                        <div class="post-category"><a href="#" title="business"><%= i.categories %></a>
+                                        </div>
+                                        <h3 class="entry-title"><a href="/news/<%= i.slug %>"><%= i.title %></a></h3>
+                                        <p><%= i.description %></p>
+                                        <div class="entry-footer">
+                                            <% var options = {year: 'numeric', month: 'long', day: 'numeric'}; %>
+                                            <span class="post-date"><a
+                                                        href="#"><%= i.createdAt.toLocaleDateString('ua-UA', options) %></a></span>
+                                            <span class="post-like"><i class="fa fa-user"></i><a
+                                                        href="#"><%= i.createdBy %></a></span>
+                                            <span class="post-view"><i class="fa fa-comment"></i><a
+                                                        href="#"><%= i.comments.length %></a></span>
+                                        </div>
+                                        <a href="/news/<%= i.slug %>" title="Read More">Читати далі... <i
+                                                    class="fa fa-angle-right"></i></a>
+                                    </div>
+                                </div><!-- Type Post /- -->
+                            </div>
+                        <% } %>
+                    <% } %>
+
+                </div><!-- Row /- -->
+                <div class="col-md-12 load-more">
+                    <a href="/news" title="Load More">Більше новин</a>
+                </div>
+            </div><!-- Container /- -->
+        </div><!-- Recent Post /- -->
+
+
+        <!-- Photos -->
+        <div class="container-fluid no-left-padding no-right-padding latest-video-block">
+            <!-- Container -->
+            <div class="container">
+                <!-- Section Header -->
+                <div class="section-header">
+                    <h3>Галерея</h3>
+                    <div class="lr-nav">
+                        <a href="javascript:void(0);" class="nav-left"><i class="fa fa-angle-left"></i></a>
+                        <a href="javascript:void(0);" class="nav-right"><i class="fa fa-angle-right"></i></a>
+                    </div>
+                </div><!-- Section Header /- -->
+                <!-- Row -->
+                <div class="row">
+                    <div id="latest_video_block">
+                        <% gallery.forEach(gallery => { %>
+                            <div class="col-xs-12">
+                                <div class="type-post color-1">
+                                    <div class="entry-cover"><a href="/gallery/album/<%= gallery.slug %>"><img
+                                                    style="height: 250px; width: 500px"
+                                                    src="/images/gallery/<%= gallery.slug %>/<%= gallery.image %>"
+                                                    alt="Post"/></a></div>
+                                    <div class="entry-content">
+                                        <h3 class="entry-title"><a
+                                                    href="/gallery/album/<%= gallery.slug %>"><%= gallery.title %></a>
+                                        </h3>
+                                        <div class="entry-footer">
+                                            <% var options = {year: 'numeric', month: 'long', day: 'numeric'}; %>
+                                            <span class="post-date"><a
+                                                        href="#"><%= gallery.postedAt.toLocaleDateString('ua-UA', options) %></a></span>
+                                            <span class="post-like"><i class="fa fa-image"></i><a
+                                                        href="#"><%= gallery.photos.length %> фото</a></span>
+                                        </div>
+
+                                    </div>
+                                </div><!-- Type Post /- -->
+                            </div><!-- Type Post /- -->
+                        <% }) %>
+
+                    </div>
+                </div>
+            </div><!-- Container /- -->
+        </div><!-- Latest Vidoe /- -->
+
+    </main>
+
+</div>
+
+<% include footer.ejs %>

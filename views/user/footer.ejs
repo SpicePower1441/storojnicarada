@@ -1,0 +1,90 @@
+<!-- Footer Main -->
+<footer id="footer-main" class="container-fluid no-left-padding no-right-padding footer-main">
+    <!-- Top Footer -->
+    <div class="container-fluid no-left-padding no-right-padding top-footer">
+        <!-- Container -->
+        <div class="container">
+            <!-- Row -->
+            <div class="row">
+
+                <!-- Widget About -->
+                <div class="col-md-3 col-sm-6 col-xs-6">
+                    <aside class="widget widget_about">
+                        <h3 class="widget-title">Про нас</h3>
+                        <p>Сторожниця - село в Ужгородському районі Закарпатської області.</p>
+                    </aside>
+                </div><!-- Widget About /- -->
+
+                <!-- Widget Working Time -->
+                <div class="col-md-3 col-sm-6 col-xs-6">
+                    <aside class="widget widget_latestposts">
+                        <h3 class="widget-title">Останні новини</h3>
+                        <% for (let j = 0; j <= 2; j++) { %>
+                            <% for (let i = AllPosts[j]; i <= AllPosts[j]; i++) { %>
+                                <div class="latest-content">
+                                    <a href="/news/<%= i.slug %>" title="<%= i.title %>"><i><img style="width: 75px; height: 75px"
+                                                    src="/images/<%= i._id %>/<%= i.image %>"
+                                                    class="wp-post-image" alt="blog-1"></i></a>
+                                    <h5><a title="<%= i.title %>" href="/news/<%= i.slug %>"><%= i.title %></a></h5>
+                                    <% var options = {year: 'numeric', month: 'long', day: 'numeric'}; %>
+                                    <span><i class="fa fa-pencil-square-o"></i><a><%= i.createdAt.toLocaleDateString('ua-UA', options) %></a></span>
+                                </div>
+                            <% } %>
+                        <% } %>
+                    </aside>
+                </div><!-- Widget Working Time -->
+
+                <!-- Widget Links -->
+                <div class="col-md-3 col-sm-6 col-xs-6">
+                    <aside class="widget widget_categories">
+                        <h3 class="widget-title">Категорії</h3>
+                        <ul>
+                            <% categories.forEach(cat => { %>
+                                <li><a href="/news/category/<%= cat.slug %>"
+                                       title="<%= cat.title %>"><%= cat.title %></a></li>
+                            <% }) %>
+                        </ul>
+                    </aside>
+                </div><!-- Widget Links /- -->
+
+                <!-- Widget Category -->
+                <div class="col-md-3 col-sm-6 col-xs-6">
+                    <aside class="widget widget_tag_cloud">
+                        <h3 class="widget-title">Теги для пошуку</h3>
+                        <div class="tagcloud">
+                            <a href="/news/category/субсидія-і-допомога" title="Субсидія і допомога">Субсидія і
+                                допомога</a>
+                            <a href="/news" title="Новини">Новини</a>
+                            <a href="/gallery" title="Галерея">Галерея</a>
+                            <a href="/news/category/релігія" title="Релігія">Релігія</a>
+                            <a href="/news/category/освіта" title="Освіта">Освіта</a>
+                            <a href="/news/category/місцеві-питання" title="Місцеві питання">Місцеві питання</a>
+                            <a href="/search?search=admin" title="admin">admin</a>
+                            <a href="/info-page" title="Довідник">Довідник</a>
+                            <a href="/contact-us" title="Контакти">Контакти</a>
+                        </div>
+                    </aside>
+                </div><!-- Widget Category /- -->
+            </div><!-- Row /- -->
+        </div><!-- Container /- -->
+    </div><!-- Top Footer -->
+    <!-- Bottom Footer -->
+    <div class="container-fluid bottom-footer">
+        <p>&copy; 2020 Всі права захищені. </p>
+    </div><!-- Bottom Footer /- -->
+</footer><!-- Footer Main /- -->
+
+<!-- JQuery v1.12.4 -->
+<script src="/assets/js/jquery-1.12.4.min.js"></script>
+
+<!-- Library - Js -->
+<script src="/assets/js/lib.js"></script>
+
+<!-- Library - Google Map API -->
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDW40y4kdsjsz714OVTvrw7woVCpD8EbLE"></script>
+
+<!-- Library - Theme JS -->
+<script src="/assets/js/functions.js"></script>
+
+</body>
+</html>
